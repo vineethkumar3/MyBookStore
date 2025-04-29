@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Your Cart</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header class="store-header">
+        <h1>Your Cart</h1>
+    </header>
+<div style="display: flex; justify-content: space-between; max-width: 700px; margin: 30px auto 10px;">
+    <a href="{{ url_for('home') }}" class="nav-btn back-btn">← Continue Shopping</a>
+    <a href="{{ url_for('checkout') }}" class="nav-btn pay-btn">Proceed to Payment</a>
+</div>
+
+    <main class="book-container" id="cart-items" style="flex-direction: column;">
+        <!-- Cart items will be populated here -->
+    </main>
+
+    <!-- Button Row -->
+
+
+
+<script src="{{ url_for('static', filename='main.js') }}"></script>
+<script>
+    const books = [
+                {id: 1, title: "Atomic Habits", image: "https://m.media-amazon.com/images/I/81eB+7+CkUL.jpg", price: 12.99},
+            {id: 2, title: "Rich Dad Poor Dad", image: "https://m.media-amazon.com/images/I/91bYsX41DVL.jpg", price: 10.99},
+            {id: 3, title: "The Alchemist", image: "https://m.media-amazon.com/images/I/71aFt4+OTOL.jpg", price: 9.99},
+            {id: 4, title: "Harry Potter", image: "https://m.media-amazon.com/images/I/81iqZ2HHD-L.jpg", price: 11.99},
+            {id: 5, title: "To Kill a Mockingbird", image: "https://m.media-amazon.com/images/I/710jnzKlDTL.jpg", price: 12.99},
+            {id: 6, title: "Think and Grow Rich", image: "https://m.media-amazon.com/images/I/81WcnNQ-TBL.jpg", price: 5.99},
+            {id: 7, title: "The Power of Now", image: "https://m.media-amazon.com/images/I/71UwSHSZRnS.jpg", price: 15.99},
+            {id: 8, title: "The Subtle Art...", image: "https://m.media-amazon.com/images/I/91uwocAMtSL.jpg", price: 10.99},
+            {id: 9, title: "Ikigai", image: "https://m.media-amazon.com/images/I/71KilybDOoL.jpg", price: 6.99}
+        ];
+
+
+    document.addEventListener("DOMContentLoaded", function () {
+        initCartPage(books);
+    });
+</script>
+</body>
+</html>
