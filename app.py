@@ -13,10 +13,6 @@ users = {
     'admin': {'name': 'Admin', 'email': 'admin@example.com', 'password': 'password123'}
 }
 
-with open('scerets.json', 'r') as f:
-    data = json.load(f)
-print(data['web']['client_secret'])
-
 
 @app.route('/')
 def home():
