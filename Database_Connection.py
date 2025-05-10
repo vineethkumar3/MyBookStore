@@ -5,7 +5,7 @@ class Database:
     @staticmethod
     def connection():
         # Connection details
-        host = "54.198.110.66"
+        host = "18.234.119.180"
         database = "flaskdb"
         user = "postgres"
         password = "12345"
