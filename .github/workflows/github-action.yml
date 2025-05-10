@@ -12,4 +12,13 @@ jobs:
       - name: Checkout Respository
         run: |
           echo "Hello world"
-        
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    if: success()  # Only deploy if previous job passed
+
+    steps:
+      - name: Trigger Deploy on Render
+        run: |
+          curl -X POST https://api.render.com/deploy/srv-d0fpt62dbo4c73anv0t0?key=Edv_D5W62rs \
+          -H "Authorization: Bearer ${{ secrets.RENDER_API_KEY }}"
