@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 app = Flask(__name__)
-app.secret_key = 'Vineeth_123'
+app.secret_key = os.environ.get("SECRET_KEY")
 
 #OAuth
 app.config["SESSION_COOKIE_NAME"] = "google-login-session"
