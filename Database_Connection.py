@@ -1,14 +1,14 @@
 import psycopg2
-
+import os
 class Database:
 
     @staticmethod
     def connection():
         # Connection details
-        host = "dpg-d0lo76d6ubrc73c99m40-a.oregon-postgres.render.com"
-        database = "bookstoredata"         #"flaskdb"
-        user = "vineeth"  #"postgres"
-        password =    "MR327oC1FEoMX1Njsnfuwzcf2YBNRo1A"          #"12345"
+        host = os.environ.get("RENDER_DATABASE_HOST")
+        database = os.environ.get("RENDER_DATABASE_NAME")
+        user = os.environ.get("RENDER_DATABASE_USER")
+        password =  os.environ.get("RENDER_DATABASE_PASSWORD")
         port = 5432
 
         try:
