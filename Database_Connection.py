@@ -5,10 +5,10 @@ class Database:
     @staticmethod
     def connection():
         # Connection details
-        host = "18.234.119.180"
-        database = "flaskdb"
-        user = "postgres"
-        password = "12345"
+        host = "postgresql://vineeth:MR327oC1FEoMX1Njsnfuwzcf2YBNRo1A@dpg-d0lo76d6ubrc73c99m40-a.oregon-postgres.render.com/bookstoredata"        #"18.234.119.180"
+        database = "bookstoredata"         #"flaskdb"
+        user = "vineeth"  #"postgres"
+        password =    "MR327oC1FEoMX1Njsnfuwzcf2YBNRo1A"          #"12345"
         port = 5432
 
         try:
