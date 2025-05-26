@@ -1,24 +1,46 @@
-name: Github action pipeline
+name: CI & Deploy to Render
+
 on:
   push:
-    branches: 
+    branches:
       - main
+  workflow_dispatch:
 
 jobs:
-  build:
+  build-and-deploy:
+    name: Build & Deploy
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Respository
-        run: |
-          echo "Hello world"
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    if: success()  # Only deploy if previous job passed
+      - name: 📥 Checkout Code
+        uses: actions/checkout@v3
 
-    steps:
-      - name: Trigger Deploy on Render
+      - name: ⚙️ Setup Python (for Flask)
+        if: exists('requirements.txt')
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: ⚙️ Setup Node (for Node.js)
+        if: exists('package.json')
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: 📦 Install Dependencies (Python)
+        if: exists('requirements.txt')
+        run: pip install -r requirements.txt
+
+      - name: 📦 Install Dependencies (Node)
+        if: exists('package.json')
+        run: npm install
+
+      - name: ✅ Run Tests
+        run: echo "🧪 Add your tests here or skip"
+
+      - name: 🚀 Trigger Deploy to Render
+        if: success()
         run: |
-          curl -X POST https://api.render.com/deploy/srv-d0fpt62dbo4c73anv0t0?key=Edv_D5W62rs \
-          -H "Authorization: Bearer ${{ secrets.RENDER_API_KEY }}"
+          curl -X POST $RENDER_DEPLOY_HOOK_URL
+        env:
+          RENDER_DEPLOY_HOOK_URL: ${{ secrets.RENDER_DEPLOY_HOOK_URL }}
